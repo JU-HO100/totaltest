@@ -4,8 +4,7 @@
 	session.invalidate();
 %>
 <script>
-	location.href="http://developers.kakao.com/logout";
-	location.href="http://nid.naver.com/nidlogin.logout";
+	alert("로그아웃 되었습니다");
 </script>
 <%
 	response.sendRedirect("./index.jsp");

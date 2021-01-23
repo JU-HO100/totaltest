@@ -1,15 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%
-	String user = (String)session.getAttribute("name");
-%>
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>오늘 뭐 먹지?</title>
 <%@ include file="/common/bootstrap_common.jsp"%>
+<%String indexNick =  (String)session.getAttribute("nick");%>
 <script>
 //Get the button
 var mybutton = document.getElementById("myBtn");
@@ -21,7 +18,7 @@ function topFunction() {
 }
 
 function logout() {
-		location.href="logout.jsp";
+		location.href="/member/logout.jsp";
 }
 </script>
 <style>
@@ -44,16 +41,19 @@ function logout() {
 
 </head>
 <body>
-
 	<table align="center" style="width: 70% ; height: 100%;">
 			<!-- Header -->
 		<tr>
-			<%if(user!=null){ %>
-			<td colspan="2" style="width: 100%; padding-top: 2%; padding-bottom: 2%;">
+			<%if(indexNick!=null && indexNick.equals("총관리자")){ %>
+			<td colspan="3" style="width: 100%; padding-top: 2%; padding-bottom: 2%;">
+				<%@ include file="/adminHeader.jsp"%>
+			</td>		
+			<%}else if(indexNick!=null && indexNick.length() >0 && ! indexNick.equals("총관리자")){ %>
+			<td colspan="3" style="width: 100%; padding-top: 2%; padding-bottom: 2%;">
 				<%@ include file="/loginOkHeader.jsp"%>
 			</td>
 			<%}else{ %>
-			<td colspan="2" style="width: 100%; padding-top: 2%; padding-bottom: 2%;">
+			<td colspan="3" style="width: 100%; padding-top: 2%; padding-bottom: 2%;">
 				<%@ include file="/header.jsp"%>
 			</td>
 			<%} %>
@@ -62,7 +62,7 @@ function logout() {
 			
 			<!-- NavBar -->
 		<tr>
-			<td colspan="2" style="width: 100%;">
+			<td colspan="3" style="width: 100%;">
 				<%@ include file="/navbar.jsp" %>
 			</td>
 		</tr>
@@ -71,7 +71,7 @@ function logout() {
 			
 			<!-- Carousel -->
 		<tr>
-			<td colspan="2" style="width: 100%; padding-top: 2%; padding-bottom: 2%;">
+			<td colspan="3" style="width: 100%; padding-top: 2%; padding-bottom: 2%;">
 				<%@ include file="/carousel.jsp"%>
 			</td>
 		</tr>
@@ -80,18 +80,28 @@ function logout() {
 			
 			<!-- Content -->
 		<tr>
-			<td style="width: 50%">
+			<td style="width: 55%">
 				<%@ include file="/content.jsp" %>
 			</td>
-			<td style="width: 50%">
-				<%@ include file="/content2.jsp" %>
+			<td style="width: 45%; padding-left:4% ">
+				<h1 style="font-family: 'Nanum Pen Script', cursive; padding-left: px;">좋아요 분포도</h1>
+				<table class="table">
+					<tr>
+						<td>
+							<%@ include file="/member/google1.jsp" %>
+						</td>
+						<td>
+							<%@ include file="/member/google2.jsp" %>
+						</td>
+					</tr>
+				</table>
 			</td>
 		</tr>
 			<!-- End Content -->
 			
 			<!--  Carousel 2 -->
 		<tr>
-			<td colspan="2" style="width: 100%;">
+			<td colspan="3" style="width: 100%;">
 				<%@ include file="/carousel2.jsp"%>
 			</td>
 		</tr>

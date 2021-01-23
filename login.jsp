@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <%@ include file="/common/bootstrap_common.jsp"%>
+<%String msg =(String)request.getAttribute("msg"); %>
 <title>오늘 뭐 먹지?</title>
 <script type="text/javascript">
 function loginAction() {
@@ -23,17 +24,20 @@ function loginAction() {
     }
 	
 }
-	function findIdAction() {
-		location.href="/findId.jsp";
-	}
-	function findPwAction() {
-		location.href="/findPw.jsp";
-	}
-	
+function findIdAction() {
+	location.href="/findId.jsp";
+}
+function findPwAction() {
+	location.href="/findPw.jsp";
+}
 </script>
 </head>
 <body>
-
+<%if(msg!=null){%>
+<script type="text/javascript">
+	alert("<%=msg%>");
+</script>
+<%} %>
 <table align="center" style="width: 70% ; height: 100%;">
 	<tr>
 		<td>
@@ -45,19 +49,10 @@ function loginAction() {
 			<%@ include file="/loginContent.jsp" %>
 		</td>	
 	</tr>
-	
-	<tr>
-		<td align="center">
-			<%@ include file="/kakaoLogin3.jsp" %>
-			<br>
-			<%@ include file="/naverLogin.jsp" %>
-		</td>
-	</tr>
 	<tr>
 		<td style="padding-top: 12%">
 			<%@ include file="/footer.jsp" %>
 		</td>
 	</tr>	
 </table>
-
 </body>
