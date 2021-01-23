@@ -12,8 +12,10 @@
 	alert("<%=msg%>");
 	if(msg != null){
 		alert("<%=msg%>");
+		location,href="./index.jsp";
 	}else{
 		alert("로그인에 실패하였습니다");
+		location,href="./index.jsp";
 	}
 </script>
 </body>

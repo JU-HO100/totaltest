@@ -5,11 +5,63 @@
 <head>
 <meta charset="UTF-8">
 <%@ include file="/common/bootstrap_common.jsp"%>
-<% String id = (String)session.getAttribute("id"); %>
-<script type="text/javascript" src="<%=path.toString() %>js/mypage.js"></script>
+<% String mypage = request.getParameter("mypage");%>
 <script type="text/javascript">
-function registerChefContent(){
-	location.href="/member/popRecipeNum.np?m_id=<%=id%>";
+function memberUpdateContent(){
+    $.ajax({
+      type : "GET",
+      url : "/memberUpdateContent.jsp",
+      dataType : "text",
+      error : function() {
+        alert('통신실패!!');
+      },
+      success : function(data) {
+        $('#tb_ajax').html(data);
+      }
+
+    });
+  }
+function cookingClassCheckContent(){
+    $.ajax({
+      type : "GET",
+      url : "/cookingClassCheckContent.jsp",
+      dataType : "text",
+      error : function() {
+        alert('통신실패!!');
+      },
+      success : function(data) {
+        $('#tb_ajax').html(data);
+      }
+
+    });
+  }
+function joinChefContent(){
+    $.ajax({
+      type : "GET",
+      url : "/joinChefContent.jsp",
+      dataType : "text",
+      error : function() {
+        alert('통신실패!!');
+      },
+      success : function(data) {
+        $('#tb_ajax').html(data);
+      }
+
+    });
+  }
+function memberOutContent(){
+    $.ajax({
+      type : "GET",
+      url : "/memberOutContent.jsp",
+      dataType : "text",
+      error : function() {
+        alert('통신실패!!');
+      },
+      success : function(data) {
+        $('#tb_ajax').html(data);
+      }
+
+    });
   }
 function check() {
 	//아이디 공백 확인
@@ -24,11 +76,7 @@ function check() {
       $("#m_pw").focus();
       return false;
     }
-   if($("#m_id").val()!="<%=id%>"){
-    alert("탈퇴할 아이디와 로그인한 아이디가 다릅니다.");
-    $("#m_id").focus();
-    return false;
-   }
+    alert("회원탈퇴 완료");
     memberOutForm.submit();
 }
 </script>
@@ -52,45 +100,27 @@ function check() {
 			
 			<!-- NavBar -->
 		<tr>
-			<td colspan="2" style="width: 100%;">
+			<td style="width: 100%;">
 				<%@ include file="/navbar.jsp" %>
 			</td>
 		</tr>
 			<!-- END NavBar -->
 			
-			<!--  Mypage -->
+			<!-- END Mypage -->
 		<tr>
-			<td style="width: 19%; vertical-align: top;">
-				<div class="btn-group-vertical" style="width: 100%; margin-top: 12%">
-					 <button type="button" class="btn btn-outline-dark" style="text-align: left;" onclick="reload()">회원정보 수정</button>
-					 <button type="button" class="btn btn-outline-dark" style="text-align: left;" onclick="cookingClassCheckContent()">쿠킹클래스 확인</button>
-					 <button type="button" class="btn btn-outline-dark" style="text-align: left;" onclick="registerChefContent()">셰프 등록</button>
-					 <button type="button" class="btn btn-outline-dark" style="text-align: left;" onclick="memberOutContent()">회원 탈퇴</button>
-				</div>
-			</td>
-			<td style="width: 70%; padding-top:3% ;padding-left: 5%; padding-right: 5%;">
-				<div  id="tb_ajax">
-					<script type="text/javascript">
-					    $.ajax({
-						      type : "GET",
-						      url : "/member/myPage.np?m_id="+"<%=id%>",
-						      dataType : "text",
-						      success : function(data) {
-						        $('#tb_ajax').html(data);
-						      },
-						      error : function() {
-						        alert('통신실패!!');
-						      }
-						    });
-					</script>
-				</div>
+			<td style="padding-top: 4%" id="tb_ajax">
+				<%if(mypage.equals("4")){ %>
+				<%@ include file="/memberOutContent.jsp" %>
+				<%}else{ %>
+				<%@ include file="/memberUpdateContent.jsp" %>
+				<%} %>
 			</td>
 		</tr>
 			<!-- END Mypage -->
 			
 			<!-- Footer -->
 		<tr>
-			<td colspan="2">
+			<td>
 				<%@ include file="/footer.jsp" %>
 			</td>
 		</tr>

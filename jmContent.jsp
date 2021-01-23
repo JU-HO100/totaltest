@@ -1,13 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<form method="get"  name="loginForm" action="/member/memRegi.np" >
+<!DOCTYPE html>
+
+<form method="post"  name="loginForm" action="/member/memRegi.np" >
 <table align="center"  style="width: 70%">
 	<tr style="height:80px; ">
 		<td style="width: 50%; text-align: center; ">
 			<p style="font-family: Black Han Sans, sans-serif; color: black; padding-top: 16px;">이름</p>
 		</td>
 		<td style="widows: 50%">
-			<input value="박준헌" type="text" name="m_name" id="m_name" style="float: left;" required="required">
+			<input value="안준헌" type="text" name="m_name" id="m_name" style="float: left;" required="required">
 		</td>
 	</tr>
 	<tr style="height:80px; ">
@@ -24,7 +26,7 @@
 			<p style="font-family: Black Han Sans, sans-serif; color: black; padding-top: 16px;">아이디 <br/>  (4~12자의 영문 대소문자와 숫자로만 입력) </p>
 		</td>
 		<td>
-			<input value="ppp123" type="text" name="m_id" id="m_id" style="float: left;" required="required">
+			<input value="test123" type="text" name="m_id" id="m_id" style="float: left;" required="required">
 		</td>
 		<td>
 			<input class="btn btn-outline-dark" type="button" value="중복 확인" onclick="idCheckRegi()">
@@ -51,15 +53,26 @@
 			<p style="font-family: Black Han Sans, sans-serif; color: black; padding-top: 16px;">이메일</p>
 		</td>
 		<td>
-			<input value="kosmo1@gmail.com" type="email" name="m_mail" id="m_mail" style="float: left;" required="required">
+			<input value="test5678@gmail.com" type="email" name="m_mail" id="m_mail" style="float: left;" required="required">
 		</td>
 	</tr>
 	<tr style="height:80px; ">
 		<td style="width: 50%; text-align: center; ">
 			<p style="font-family: Black Han Sans, sans-serif; color: black; padding-top: 16px;">주소</p>
 		</td>
+		<td style="width: 50%; text-align: center; ">
+			<input value="" type="text" name="m_addr" id="m_addr" style="float: left; width:70%;" required="required">
+		</td>
 		<td>
-			<input value="서울특별시 금천구 가산동" type="text" name="m_zip" id="m_zip" style="float: left;" required="required">
+			<input class="btn btn-outline-dark" type="button" value="주소검색" onClick="daumzip()">
+		</td>
+	</tr>
+	<tr style="height:80px; ">
+		<td style="width: 50%; text-align: center; ">
+			<p style="font-family: Black Han Sans, sans-serif; color: black; padding-top: 16px;">상세주소</p>
+		</td>
+		<td style="width: 50%; text-align: center; ">	
+			<input value="" type="text" name="m_detail" id="m_detail" style="float: left; width:70%;" required="required">
 		</td>
 	</tr>
 	<tr style="height:80px; ">
@@ -67,7 +80,7 @@
 			<p style="font-family: Black Han Sans, sans-serif; color: black; padding-top: 16px;">닉네임</p>
 		</td>
 		<td>
-			<input value="널포화이팅" type="text" name="m_nick" id="m_nick" style="float: left;" required="required">
+			<input value="널포인터" type="text" name="m_nick" id="m_nick" style="float: left;" required="required">
 		</td>
 		<td>
 			<input class="btn btn-outline-dark" type="button" value="중복 확인" onclick="nickCheckRegi()">
@@ -78,7 +91,7 @@
 			<p style="font-family: Black Han Sans, sans-serif; color: black; padding-top: 16px;" >전화번호 <br/> (- 없이 입력 바랍니다.)</p>
 		</td>
 		<td>
-			<input value="01022229999" type="tel" name="m_hp" id="m_hp" style="float: left;" required="required">
+			<input value="01012345678" type="tel" name="m_hp" id="m_hp" style="float: left;" required="required">
 		</td>
 	</tr>
 	<tr style="height:80px; ">
@@ -86,7 +99,7 @@
 			<p style="font-family: Black Han Sans, sans-serif; color: black; padding-top: 16px;">생년월일</p>
 		</td>
 		<td>
-			<input value="1988-08-16" type="date" name="m_birth" id="m_birth" style="float: left;" required="required">
+			<input value="1994-07-16" type="date" name="m_birth" id="m_birth" style="float: left;" required="required">
 		</td>
 	</tr>
 	<tr style="height:120px; ">
